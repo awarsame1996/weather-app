@@ -1,6 +1,7 @@
-const API_KEY = "YOUR_API_KEY";
-
-const renderCities = () => {
+const API_KEY = "b248c5c1ee789732d38aa9fe65ef7935";
+const form = document.getElementById("form");
+const renderRecentCities = () => {
+  console.log("recent cities needs to be done");
   // get recent cities from LS []
   // if [] is empty then render alert
   // else render all recent cities
@@ -17,6 +18,7 @@ const renderForecastWeather = (forecastWeatherData) => {
 
 const renderWeatherData = (cityName) => {
   // use API to fetch current weather data
+  console.log("yhhh");
   const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
 
   // from the response cherry pick all the data you want to see in the current weather card
@@ -29,14 +31,26 @@ const renderWeatherData = (cityName) => {
   // render forecast weather data
 };
 
-const handleFormSubmit = () => {
+const handleFormSubmit = (event) => {
   // get the city name from input
-  // if city name is empty handle that
-  // else render weather data
-};
+  event.preventDefault();
+  //get text input
+  let search = document.getElementById("input-text").value;
 
+  if (search) {
+    //validate
+
+    // else render weather data
+    renderWeatherData();
+    // if city name is empty handle that
+  } else {
+    alert("enter valid search");
+  }
+};
+form.addEventListener("submit", handleFormSubmit);
 const onReady = () => {
   // render recent cities
+  renderRecentCities();
 };
 
 $(document).ready(onReady);
