@@ -1,5 +1,7 @@
 const API_KEY = "b248c5c1ee789732d38aa9fe65ef7935";
 const form = document.getElementById("form");
+let lat = "";
+let lon = "";
 const renderRecentCities = () => {
   console.log("recent cities needs to be done");
   // get recent cities from LS []
@@ -18,16 +20,30 @@ const renderForecastWeather = (forecastWeatherData) => {
 
 const renderWeatherData = (cityName) => {
   // use API to fetch current weather data
-  console.log("yhhh");
-  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`;
-
+  let search = document.getElementById("input-text").value;
+  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}`;
+  console.log(currentWeatherUrl);
+  let items = [];
   // from the response cherry pick all the data you want to see in the current weather card
-
-  // get the lat and lon from current weather data API response
-  const forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&units=metric&appid=${API_KEY}`;
+  fetch(currentWeatherUrl)
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (result) {
+      items = result;
+      lat = items.coord.lat;
+      console.log(lat);
+      lon = items.coord.lon;
+      console.log(lon);
+      renderForecastWeatherData(lat, lon);
+    });
 
   // render current weather data
-
+};
+const renderForecastWeatherData = (lat, lon) => {
+  // get the lat and lon from current weather data API response
+  const forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly&units=metric&appid=${API_KEY}`;
+  console.log(forecastWeatherUrl);
   // render forecast weather data
 };
 
@@ -42,6 +58,7 @@ const handleFormSubmit = (event) => {
 
     // else render weather data
     renderWeatherData();
+    // add search to recent searches local storage
     // if city name is empty handle that
   } else {
     alert("enter valid search");
