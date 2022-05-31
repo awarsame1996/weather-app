@@ -15,8 +15,10 @@
   </head>
   <body>
     <!-- header -->
-    <header>TITLE</header>
-    <main class="row border">
+    <header class="header">
+      <h1 class="title">Weather Dashboard</h1>
+    </header>
+    <main id= "main"class="row border">
       <!-- Form and recent history section -->
       <section class="col-sm-12 col-md-3 border">
         <!-- search form -->
@@ -36,22 +38,29 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
+        <hr>
         <!-- recent cities -->
-        <div>Recent Cities</div>
+        <div id="recent">Recent Cities
+          <div id="list" class="list-group">
+            
+          </div>
+        </div>
       </section>
 
       <!-- current and future data section -->
-      <section class="col-sm-12 col-md-9 border">
+      <section id="weatherContainer" class="col-sm-12 col-md-9 border">
         <!-- current weather data -->
-        <div id="currentWeather" class="border row"></div>
+  
 
         <!-- forecast weather data -->
-        <div>
           <!-- title -->
-          <h2>Title</h2>
-          <div class="d-flex justify-content-between flex-wrap">
+         
+          <div
+            id="forecastWeather"
+            class="d-flex justify-content-between flex-wrap"
+          >
             <!-- forecast weather card 1 -->
-            <div class="card" style="width: 12rem">
+            <!-- <div class="card" style="width: 12rem">
               <img src="..." class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -61,59 +70,7 @@
                 </p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
-            </div>
-
-            <!-- forecast weather card 2 -->
-            <div class="card" style="width: 12rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <!-- forecast weather card 3 -->
-            <div class="card" style="width: 12rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <!-- forecast weather card 4 -->
-            <div class="card" style="width: 12rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <!-- forecast weather card 5 -->
-            <div class="card" style="width: 12rem">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
