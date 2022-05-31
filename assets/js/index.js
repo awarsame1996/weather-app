@@ -11,9 +11,14 @@ let wind = "";
 let humidity = "";
 let description = "";
 let tempDate = "";
+let uv = "";
 const renderRecentCities = () => {
-  console.log("recent cities needs to be done");
+  const container = document.getElementById("recent");
   const searchContainer = document.getElementById("list");
+  searchContainer.remove();
+  $("#recent").append(` <div id="list" class="list-group">
+            
+  </div>`);
   // get recent cities from LS []
   const recentCities = JSON.parse(localStorage.getItem("recentSearches"));
   // if [] is empty then render alert
@@ -34,7 +39,12 @@ const renderRecentCities = () => {
 
 const renderCurrentWeather = (currentWeatherData) => {
   // render the current weather data and append to section
-  $("#currentWeather").append(`  <div id="currentWeather" class="border row">
+  let weatherContainer = document.getElementById("weatherContainer");
+  $("#weatherContainer").css(
+    "background-image",
+    `url('./assets/images/backgrounds/${icon}.jpeg')`
+  );
+  $("#currentWeather").append(`  <div  id="currentWeather" class="border row">
   <div  class="col-auto">
     <h1 >${city}, ${date} <img src="./assets/images/png/${icon}.png" class="img-fluid" alt="..." /></h1>
     <h2> ${temp}°C</h2>
@@ -77,6 +87,7 @@ const renderWeatherData = (search) => {
     })
     .then(function (result) {
       items = result;
+      console.log(items);
       lat = items.coord.lat;
       lon = items.coord.lon;
       renderForecastWeatherData(lat, lon);
@@ -88,7 +99,7 @@ const renderWeatherData = (search) => {
       humidity = items.main.humidity;
       tempDate = items.dt;
       date = moment.unix(tempDate).format("DD-MM-YYYY");
-      description = items.weather[0].description;
+      uv = description = items.weather[0].description;
       let currentWeatherData = [temp, icon, wind, humidity, description, date];
       renderCurrentWeather(currentWeatherData);
     });
@@ -204,6 +215,7 @@ const handleFormSubmit = (event) => {
 
     // else render weather data
     renderWeatherData(search);
+    renderRecentCities();
     // add search to recent searches local storage
     // if city name is empty handle that
   } else {
