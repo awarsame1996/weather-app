@@ -46,8 +46,8 @@ const renderCurrentWeather = (currentWeatherData) => {
   );
   $("#currentWeather").append(`  <div  id="currentWeather" class="border row">
   <div  class="col-auto">
-    <h1 >${city}, ${date} <img src="./assets/images/png/${icon}.png" class="img-fluid" alt="..." /></h1>
-    <h2> ${temp}°C</h2>
+    <h1 class="title">${city}, ${date} <img src="./assets/images/png/${icon}.png" class="img-fluid" alt="..." /></h1>
+    <h2 class="title"> ${temp}°C</h2>
   </div>
            
             <div class="col-auto">
@@ -70,7 +70,7 @@ const renderForecastWeather = (forecastWeatherData) => {
   $("#forecastWeather").append(`  <div class="card" style="width: 10rem">
   <img src="./assets/images/png/${icon}.png" class="card-img-top rounded float-start" alt="..." />
   <div class="card-body">
-    <h5 class="card-title">${date}</h5>
+    <h5 class="card-title title">${date}</h5>
     <p class="weatherDescription">Temp:${temp}°C</p>
    </div>
 </div>`);
@@ -121,7 +121,7 @@ const renderForecastWeatherData = (lat, lon) => {
       items = result;
       console.log(items);
 
-      for (i = 0; i < 5; i++) {
+      for (i = 1; i < 6; i++) {
         temp = items.daily[i].temp.day;
         icon = items.daily[i].weather[0].icon;
         console.log(icon);
@@ -146,7 +146,7 @@ const handleRecentSubmit = (event) => {
 
   <!-- forecast weather data -->
     <!-- title -->
-   <h2>5-Day Forecast</h2>
+   <h2 class="title">5-Day Forecast</h2>
     <div
       id="forecastWeather"
       class="d-flex justify-content-between flex-wrap"
